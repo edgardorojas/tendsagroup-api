@@ -49,12 +49,12 @@ const createNewNote = async (req, res) => {
         estado, title, text } = req.body
     console.log(user, title, text)
     // Confirm data
-    if (!user || !nombreCte || !contacto || !title || !text) {
+    if (!user || !nombreCte || !contacto) {
         return res.status(400).json({ message: 'Todos los campos son requeridos' })
     }
 
     // Check for duplicate title
-    const duplicate = await Note.findOne({ title }).collation({ locale: 'en', strength: 2 }).lean().exec()
+    const duplicate = await Note.findOne({ numOTI }).collation({ locale: 'en', strength: 2 }).lean().exec()
 
     if (duplicate) {
         return res.status(409).json({ message: 'Servicio ya existe' })
@@ -78,7 +78,7 @@ const createNewNote = async (req, res) => {
         lugarTrabajo,
         fechaInicio,
         fechaEntrega,
-        estado, title, text })
+        estado })
 
     if (note) { // Created 
         return res.status(201).json({ message: 'Servicio creado' })

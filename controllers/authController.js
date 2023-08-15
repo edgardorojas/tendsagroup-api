@@ -12,7 +12,8 @@ const login = asyncHandler(async (req, res) => {
     if (!username || !password) {
         return res.status(400).json({ message: 'Todos los campos son requeridos' })
     }
-
+  
+    
     const foundUser = await User.findOne({ username }).exec()
 
     if (!foundUser || !foundUser.active) {

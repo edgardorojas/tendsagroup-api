@@ -32,8 +32,8 @@ const noteSchema = new mongoose.Schema({
         // required: true        
     },
     numOTI: {
-        type: String
-        // required: true        
+        type: String,
+        required: true        
     },
     numReporte: {
         type: String
@@ -74,7 +74,7 @@ const noteSchema = new mongoose.Schema({
     },
     fechaEntrega:  {
         type: Date,
-        required: true,
+        // required: true,
         validate: {
             // La fecha final debe ser mayor o igual que la fecha de inicio
             validator: function(value) {
@@ -103,54 +103,3 @@ const noteSchema = new mongoose.Schema({
 //     start_seq: 500
 // })
 module.exports = mongoose.model('Note', noteSchema)
-
-
-
-// "user": "64c9738b6d608c98da1a026a",
-    
-// "nombreCte": "CAMERON DE MEXICO",
-// "contacto": "Jesús Fernando Lastra Gallegos",
-// "viaSolicitud":"Via correo", 
-// "numCotizacion":"Pendiente",
-// "numRevision":"00",  
-// "ordenCompra": "4513797106",
-// "numOTI": "TEN-OTI-23001",
-// "numReporte": "TEN-REP-23001",
-// "tipoServicio": "MT",
-// "materialInspeccion": "LLAVES",
-// "tecnica":"NA",
-// "metodo": "MT" ,
-// "hrsServicio": 4,
-// "tipoCorriente": 100,
-// "lugarTrabajo": "NAVE" ,
-// "responsable": "HSA",
-// "fechaInicio": "01/07/2023",
-// "fechaLimite": "01/06/2023",
-// "estado": "EN PROCESO",
-// "title": "PRUEBA01",
-// "text": "PRUEBAS" , 
-// "completed": FALSE
-    
-
-// user,
-// nombreCte,
-// contacto,
-// viaSolicitud, 
-// numCotizacion,
-// numRevision,  
-// ordenCompra,
-// numOTI,
-// numReporte,
-// tipoServicio,
-// materialInspeccion,
-// tecnica,
-// metodo,
-// hrsServicio,
-// tipoCorriente
-// lugarTrabajo,
-// fechaInicio,
-// fechaLimite,
-// estado,
-// title,
-// text,
-// completed

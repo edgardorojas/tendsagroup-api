@@ -24,7 +24,7 @@ const noteSchema = new mongoose.Schema({
         // required: true        
     },
     numRevision: {
-        type: String
+        type: Number
         // required: true
     },  
     ordenCompra: {
@@ -60,7 +60,7 @@ const noteSchema = new mongoose.Schema({
         // required: true        
     },
     tipoCorriente: {
-        type: String
+        type: Number
         // required: true        
     },
     lugarTrabajo: {
@@ -86,6 +86,10 @@ const noteSchema = new mongoose.Schema({
     estado: {
         type: String
         // required: true        
+    },
+    correo: {
+        type: Boolean,
+        default: false
     },
     completed: {
         type: Boolean,

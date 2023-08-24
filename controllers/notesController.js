@@ -40,7 +40,8 @@ const getAllNotes = asyncHandler(async (req, res) => {
 // @route POST /notes
 // @access Private
 const createNewNote = async (req, res) => {
-    const { user,  nombreCte,
+    const { user,  
+        nombreCte,
         contacto,
         viaSolicitud, 
         numCotizacion,
@@ -57,8 +58,9 @@ const createNewNote = async (req, res) => {
         lugarTrabajo,
         fechaInicio,
         fechaEntrega,
-        estado, title, text } = req.body
-    console.log(user, title, text)
+        estado, 
+        correo} = req.body
+    console.log(user, numOTI)
     // Confirm data
     if (!user || !nombreCte || !contacto) {
         return res.status(400).json({ message: 'Todos los campos son requeridos' })
@@ -72,7 +74,8 @@ const createNewNote = async (req, res) => {
     }
 
     // Create and store the new user 
-    const note = await Note.create({ user, nombreCte,
+    const note = await Note.create({ user, 
+        nombreCte,
         contacto,
         viaSolicitud, 
         numCotizacion,
@@ -89,7 +92,8 @@ const createNewNote = async (req, res) => {
         lugarTrabajo,
         fechaInicio,
         fechaEntrega,
-        estado })
+        estado,
+        correo })
 
     if (note) { // Created 
         return res.status(201).json({ message: 'Servicio creado' })
@@ -122,7 +126,8 @@ const updateNote = asyncHandler(async (req, res) => {
         fechaInicio,
         fechaEntrega,
         estado, 
-        title, text, completed } = req.body
+        correo,
+        completed } = req.body
 
     // Confirm data
     if (!id || !user || !nombreCte || !contacto || typeof completed !== 'boolean') {
@@ -163,13 +168,12 @@ const updateNote = asyncHandler(async (req, res) => {
     note.fechaInicio = fechaInicio,
     note.fechaEntrega = fechaEntrega,
     note.estado =  estado, 
-    note.title = title
-    note.text = text
+    note.correo = correo,
     note.completed = completed
 
     const updatedNote = await note.save()
 
-    res.json(`'${updatedNote.title}' actualizado`)
+    res.json(`'${updatedNote.numOTI}' actualizado`)
 })
 
 // @desc Delete a note

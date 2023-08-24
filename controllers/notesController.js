@@ -1,14 +1,25 @@
 const Note = require('../models/Note')
 const User = require('../models/User')
 const asyncHandler = require('express-async-handler')
+const { post } = require('../routes/root')
 
 // @desc Get all notes 
 // @route GET /notes
 // @access Private
 const getAllNotes = asyncHandler(async (req, res) => {
+    //Define pagination
+    const PAGE_SIZE = 3
+    const page = parseInt(req.query.page || "0")
+    const totalNotes = await Note.countDocuments()
+    const totalPages = Math.ceil(totalNotes / PAGE_SIZE)
     // Get all notes from MongoDB
     const notes = await Note.find().lean()
+    // const notes = await Note.find()
+    //                         .lean()
+    //                         .limit(PAGE_SIZE)
+    //                         .skip(PAGE_SIZE * page)
 
+    // console.log(PAGE_SIZE, page, totalNotes, totalPages)
     // If no notes 
     if (!notes?.length) {
         return res.status(400).json({ message: 'No se han encontrado servicios' })
@@ -114,8 +125,8 @@ const updateNote = asyncHandler(async (req, res) => {
         title, text, completed } = req.body
 
     // Confirm data
-    if (!id || !user || !title || !text || typeof completed !== 'boolean') {
-        return res.status(400).json({ message: 'Todos los campos son requeridos' })
+    if (!id || !user || !nombreCte || !contacto || typeof completed !== 'boolean') {
+        return res.status(400).json({ message: 'Todos los campos SON requeridos' })
     }
 
     // Confirm note exists to update
@@ -126,7 +137,7 @@ const updateNote = asyncHandler(async (req, res) => {
     }
 
     // Check for duplicate title
-    const duplicate = await Note.findOne({ title }).collation({ locale: 'en', strength: 2 }).lean().exec()
+    const duplicate = await Note.findOne({ numOTI }).collation({ locale: 'en', strength: 2 }).lean().exec()
 
     // Allow renaming of the original note 
     if (duplicate && duplicate?._id.toString() !== id) {

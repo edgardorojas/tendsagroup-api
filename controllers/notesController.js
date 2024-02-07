@@ -42,19 +42,19 @@ const getAllNotes = asyncHandler(async (req, res) => {
 const createNewNote = async (req, res) => {
     const { user,  
         nombreCte,
-        contacto,
-        viaSolicitud, 
-        numCotizacion,
-        numRevision,  
-        ordenCompra,
+        // contacto,
+        // viaSolicitud, 
+        // numCotizacion,
+        // numRevision,  
+        // ordenCompra,
         numOTI,
-        numReporte,
+        // numReporte,
         tipoServicio,
-        materialInspeccion,
-        tecnica,
-        metodo,
-        hrsServicio,
-        tipoCorriente,
+        // materialInspeccion,
+        // tecnica,
+        // metodo,
+        // hrsServicio,
+        // tipoCorriente,
         lugarTrabajo,
         fechaInicio,
         fechaEntrega,
@@ -62,7 +62,8 @@ const createNewNote = async (req, res) => {
         correo} = req.body
     console.log(user, numOTI)
     // Confirm data
-    if (!user || !nombreCte || !contacto) {
+    // if (!user || !nombreCte || !contacto) {
+    if (!user || !nombreCte) {
         return res.status(400).json({ message: 'Todos los campos son requeridos' })
     }
 
@@ -76,19 +77,19 @@ const createNewNote = async (req, res) => {
     // Create and store the new user 
     const note = await Note.create({ user, 
         nombreCte,
-        contacto,
-        viaSolicitud, 
-        numCotizacion,
-        numRevision,  
-        ordenCompra,
+        // contacto,
+        // viaSolicitud, 
+        // numCotizacion,
+        // numRevision,  
+        // ordenCompra,
         numOTI,
-        numReporte,
+        // numReporte,
         tipoServicio,
-        materialInspeccion,
-        tecnica,
-        metodo,
-        hrsServicio,
-        tipoCorriente,
+        // materialInspeccion,
+        // tecnica,
+        // metodo,
+        // hrsServicio,
+        // tipoCorriente,
         lugarTrabajo,
         fechaInicio,
         fechaEntrega,
@@ -109,19 +110,19 @@ const createNewNote = async (req, res) => {
 const updateNote = asyncHandler(async (req, res) => {
     const { id, user, 
         nombreCte,
-        contacto,
-        viaSolicitud, 
-        numCotizacion,
-        numRevision,  
-        ordenCompra,
+        // contacto,
+        // viaSolicitud, 
+        // numCotizacion,
+        // numRevision,  
+        // ordenCompra,
         numOTI,
-        numReporte,
+        // numReporte,
         tipoServicio,
-        materialInspeccion,
-        tecnica,
-        metodo,
-        hrsServicio,
-        tipoCorriente,
+        // materialInspeccion,
+        // tecnica,
+        // metodo,
+        // hrsServicio,
+        // tipoCorriente,
         lugarTrabajo,
         fechaInicio,
         fechaEntrega,
@@ -130,7 +131,8 @@ const updateNote = asyncHandler(async (req, res) => {
         completed } = req.body
 
     // Confirm data
-    if (!id || !user || !nombreCte || !contacto || typeof completed !== 'boolean') {
+    // if (!id || !user || !nombreCte || !contacto || typeof completed !== 'boolean') {
+    if (!id || !user || !nombreCte || typeof completed !== 'boolean') {
         return res.status(400).json({ message: 'Todos los campos SON requeridos' })
     }
 
@@ -151,19 +153,19 @@ const updateNote = asyncHandler(async (req, res) => {
 
     note.user = user
     note.nombreCte = nombreCte,
-    note.contacto = contacto,
-    note.viaSolicitud = viaSolicitud,  
-    note.numCotizacion = numCotizacion,
-    note.numRevision = numRevision,  
-    note.ordenCompra = ordenCompra,
+    // note.contacto = contacto,
+    // note.viaSolicitud = viaSolicitud,  
+    // note.numCotizacion = numCotizacion,
+    // note.numRevision = numRevision,  
+    // note.ordenCompra = ordenCompra,
     note.numOTI = numOTI,
-    note.numReporte = numReporte,
+    // note.numReporte = numReporte,
     note.tipoServicio = tipoServicio,
-    note.materialInspeccion = materialInspeccion,
-    note.tecnica = tecnica,
-    note.metodo = metodo,
-    note.hrsServicio = hrsServicio,
-    note.tipoCorriente = tipoCorriente,
+    // note.materialInspeccion = materialInspeccion,
+    // note.tecnica = tecnica,
+    // note.metodo = metodo,
+    // note.hrsServicio = hrsServicio,
+    // note.tipoCorriente = tipoCorriente,
     note.lugarTrabajo = lugarTrabajo,
     note.fechaInicio = fechaInicio,
     note.fechaEntrega = fechaEntrega,

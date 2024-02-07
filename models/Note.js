@@ -12,8 +12,8 @@ const noteSchema = new mongoose.Schema({
         required: true        
     },
     contacto: {
-        type: String,
-        required: true        
+        type: String
+        // required: true        
     },
     viaSolicitud: {
         type: String
